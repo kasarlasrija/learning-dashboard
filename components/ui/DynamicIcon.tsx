@@ -1,17 +1,24 @@
-import{
-    Code2,
-    Brain,
-    Database,
-    Globe,
-    Cpu,
-    Palette,
-    Lock,
-    Layers,
-    BarChart2,
-    BookOpen,
-    LucideIcon,
-}from "lucide-react";
-const iconMap: Record<string, LucideIcon> = {
+import {
+  Code2,
+  Brain,
+  Database,
+  Globe,
+  Cpu,
+  Palette,
+  Lock,
+  Layers,
+  BarChart2,
+  BookOpen,
+} from "lucide-react"
+
+interface DynamicIconProps {
+  name: string
+  size?: number
+  className?: string
+}
+
+export default function DynamicIcon({ name, size = 20, className = "" }: DynamicIconProps) {
+  const iconMap: Record<string, React.ElementType> = {
     code: Code2,
     brain: Brain,
     database: Database,
@@ -22,13 +29,8 @@ const iconMap: Record<string, LucideIcon> = {
     layers: Layers,
     chart: BarChart2,
     book: BookOpen,
-}
-interface DynamicIconProps{
-    iconName: string;
-    size?: number;
-    color?: string;
-}
-export default function DynamicIcon({ name, size = 20, className = "" }: DynamicIconProps) {
+  }
+
   const Icon = iconMap[name.toLowerCase()] ?? BookOpen
 
   return <Icon size={size} className={className} />
